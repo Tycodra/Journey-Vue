@@ -4,7 +4,7 @@
     <HelloWorld msg="Welcome to Your Vue.js App" />
   </div> -->
   <div class="row home-page-body">
-    <div class="col">
+    <div class="col" id="journey-intro">
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1 class="display-4">Journey</h1>
@@ -34,3 +34,24 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.home-page-body {
+  background-color: #bfe3eb;
+  height: 89.3vh;
+  /* width: 100vw; */
+  align-content: center;
+  /* margin-bottom: 40px; */
+}
+
+#journey-intro {
+  margin-left: 0.5rem;
+}
+
+.home-page-body,
+.row {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+  align-items: center;
+}
+</style>

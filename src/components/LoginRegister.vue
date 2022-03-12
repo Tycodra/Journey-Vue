@@ -75,7 +75,7 @@
           aria-labelledby="register-tab"
         >
           <form class="row needs-validation register-form" novalidate>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <label for="validationCustom01" class="form-label"
                 >First name</label
               >
@@ -88,7 +88,7 @@
               />
               <div class="valid-feedback">Looks good!</div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
               <label for="validationCustom02" class="form-label"
                 >Last name</label
               >
@@ -101,7 +101,7 @@
               />
               <div class="valid-feedback">Looks good!</div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-7">
               <label for="validationCustomUsername" class="form-label"
                 >Username</label
               >
@@ -127,10 +127,10 @@
               />
               <div class="invalid-feedback">Please provide a valid city.</div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
               <label for="validationCustom04" class="form-label">State</label>
               <select class="form-select" id="validationCustom04" required>
-                <option selected disabled value="">Choose...</option>
+                <option selected disabled value=""></option>
                 <option>...</option>
               </select>
               <div class="invalid-feedback">Please select a valid state.</div>
@@ -185,18 +185,43 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.user-homepage {
+  background-color: lightgrey;
+  border-radius: 0.25rem;
+  text-align: start;
+  align-self: flex-start;
+  margin: 1rem;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+.tab-pane {
+  border-radius: 0.25rem;
+  margin: 0.5rem;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+#login-tab {
+  margin-left: 1rem;
 }
-a {
-  color: #42b983;
+.tab-content {
+  background-color: #9bdeeb;
+  border-radius: 0.25rem;
+  margin: 1rem;
+}
+.nav-link {
+  color: black;
+}
+.nav-link.active.tab-button {
+  background-color: #9bdeeb;
+}
+.nav-tabs {
+  margin-top: 1rem;
+}
+.nav-item.tab {
+  border-radius: 0.25rem;
+}
+.login-button,
+.register-button {
+  color: #fff;
+  background-color: grey;
+  border-color: darkgrey;
+  padding: 0.175rem 0.75rem;
+  margin-bottom: 0.5rem;
 }
 </style>

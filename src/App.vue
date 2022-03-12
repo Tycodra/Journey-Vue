@@ -52,6 +52,16 @@
       </div>
     </nav>
     <router-view />
+    <div class="clear"></div>
+    <footer class="navbar fixed-bottom navbar-dark bg-dark">
+      <div class="navbar-nav">
+        <a
+          class="nav-link github-link"
+          href="https://github.com/Tycodra/Journey-Vue.git"
+          >Created by the lovely Cole Draper</a
+        >
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -68,6 +78,10 @@
   background-color: rgb(95, 95, 95) !important;
 }
 
+.navbar {
+  padding: none;
+}
+
 .navbar-dark .navbar-nav .nav-link:focus,
 .navbar-dark .navbar-nav .nav-link:hover,
 .navbar-dark .nav-link:hover {
@@ -79,7 +93,7 @@
 .navbar-dark .navbar-nav .nav-link,
 .navbar-dark .nav-link {
   color: rgb(6, 250, 250);
-  padding: 0.5rem 0.5rem;
+  /* padding: 0.5rem 0.5rem; */
 }
 
 .nav-item.active {
@@ -98,6 +112,11 @@
   border-radius: 0.25rem;
 }
 
+p,
+.nav-item {
+  margin-block-end: 0;
+}
+
 .dropdown-menu {
   background-color: rgb(95, 95, 95);
 }
@@ -114,5 +133,14 @@ a.dropdown-item:hover {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.fixed-bottom {
+  height: 40px;
+}
+
+.github-link {
+  padding: 0;
+  margin-left: 0.5rem;
 }
 </style>
