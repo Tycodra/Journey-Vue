@@ -1,8 +1,4 @@
 <template>
-  <!-- <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div> -->
   <div class="row home-page-body">
     <div class="col" id="journey-intro">
       <div class="jumbotron jumbotron-fluid">

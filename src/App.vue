@@ -2,7 +2,7 @@
   <div id="app">
     <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
       <div class="container-fluid">
-        <router-link to="/" class="navbar-brand">Journey</router-link>
+        <router-link to="/" exact class="navbar-brand">Journey</router-link>
         <button
           class="navbar-toggler"
           type="button"
@@ -16,9 +16,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav me-auto">
-            <li class="nav-item active">
-              <router-link to="/" class="nav-link">Home</router-link>
-            </li>
+            <router-link
+              tag="li"
+              to="/"
+              exact
+              class="nav-item nav-link"
+              exact-active-class="active"
+              >Home</router-link
+            >
             <li class="nav-item dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -31,22 +36,31 @@
                 Profile
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li>
-                  <router-link to="/myJourney" class="dropdown-item"
-                    >My Journey</router-link
-                  >
-                </li>
+                <router-link
+                  tag="li"
+                  to="/myJourney"
+                  class="dropdown-item"
+                  active-class="active"
+                  >My Journey</router-link
+                >
                 <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <router-link to="/bucketList" class="dropdown-item"
-                    >My Bucket List</router-link
-                  >
-                </li>
+                <router-link
+                  tag="li"
+                  to="/bucketList"
+                  class="dropdown-item"
+                  active-class="active"
+                  >My Bucket List</router-link
+                >
               </ul>
             </li>
           </ul>
           <p class="nav-item ms-auto">
-            <router-link to="/explore" class="nav-link">Explore</router-link>
+            <router-link
+              to="/explore"
+              class="nav-link"
+              exact-active-class="active"
+              >Explore</router-link
+            >
           </p>
         </div>
       </div>
@@ -74,6 +88,10 @@
   color: #2c3e50;
 }
 
+.row {
+  --bs-gutter-x: 0 !important;
+  --bs-gutter-y: 0 !important;
+}
 .bg-dark {
   background-color: rgb(95, 95, 95) !important;
 }
@@ -96,11 +114,12 @@
   /* padding: 0.5rem 0.5rem; */
 }
 
-.nav-item.active {
+.nav-item .active,
+li.active {
   background-color: rgb(114, 114, 114);
   color: rgb(9, 212, 212) !important;
 }
-.active a:hover {
+.active router-link:hover {
   color: rgb(6, 250, 169);
 }
 
@@ -110,6 +129,10 @@
 
 .nav-item {
   border-radius: 0.25rem;
+}
+
+.nav-item ul .li:hover {
+  background-color: rgb(114, 114, 114);
 }
 
 p,
@@ -127,8 +150,10 @@ a.dropdown-item:hover {
   background-color: #727272;
   color: rgb(6, 250, 250);
 }
-.dropdown-item:focus {
-  background-color: rgb(196, 195, 195);
+.dropdown-item:focus,
+.dropdown-item:hover {
+  background-color: rgb(114, 114, 114);
+  color: rgb(6, 250, 250);
 }
 
 nav a.router-link-exact-active {
