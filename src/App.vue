@@ -163,6 +163,10 @@ nav a.router-link-exact-active {
 .fixed-bottom {
   height: 40px;
 }
+.clear {
+  clear: both;
+  height: 40px;
+}
 
 .github-link {
   padding: 0;

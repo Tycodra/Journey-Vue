@@ -10,6 +10,7 @@
               v-for="activity in this.$root.$data.activities"
               v-bind:key="activity.activity"
               v-bind:title="activity.activity"
+              v-bind:activities="activity.activities"
             ></activity-box>
           </div>
         </div>

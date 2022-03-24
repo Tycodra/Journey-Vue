@@ -6,7 +6,7 @@
         class="accordion-button collapsed"
         type="button"
         data-bs-toggle="collapse"
-        data-bs-target="this.title"
+        :data-bs-target="'#' + title"
         aria-expanded="true"
         aria-controls="collapseOne"
       >
@@ -20,7 +20,13 @@
     >
       <div class="accordion-body">
         <div class="row activities-block">
-          <ActivityCard />
+          <activity-card
+            v-for="activity in activities"
+            :key="activity.id"
+            v-bind:image="activity.image"
+            v-bind:title="activity.title"
+            v-bind:description="activity.description"
+          ></activity-card>
         </div>
       </div>
     </div>
@@ -33,6 +39,7 @@ export default {
   name: "activityBox",
   props: {
     title: String,
+    activities: Array,
   },
   components: {
     ActivityCard,
@@ -51,5 +58,11 @@ export default {
 .accordion-button:not(.collapsed) {
   background-color: #d8f1e9;
   color: rgb(95, 95, 95);
+}
+.activities-block {
+  background-color: darkgray;
+  border-radius: 0.25rem;
+  height: 28rem;
+  overflow-x: scroll;
 }
 </style>
