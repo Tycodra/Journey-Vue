@@ -176,7 +176,7 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "LoginRegister",
   props: {
     msg: String,
   },

@@ -6,78 +6,11 @@
         <div class="activities-border">
           <h5 id="activity-header">Hobbies</h5>
           <div class="accordion" id="activity-accordion">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Hiking
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                class="accordion-collapse collapse show"
-                aria-labelledby="headingOne"
-                data-bs-parent="#activity-accordion"
-              >
-                <div class="accordion-body">
-                  <div class="row activities-block"></div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Paddleboarding
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                class="accordion-collapse collapse show"
-                aria-labelledby="headingOne"
-                data-bs-parent="#activity-accordion"
-              >
-                <div class="accordion-body">
-                  <div class="row activities-block"></div>
-                </div>
-              </div>
-            </div>
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="headingOne">
-                <button
-                  class="accordion-button collapsed"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#collapseOne"
-                  aria-expanded="true"
-                  aria-controls="collapseOne"
-                >
-                  Miscellaneous
-                </button>
-              </h2>
-              <div
-                id="collapseOne"
-                class="accordion-collapse collapse show"
-                aria-labelledby="headingOne"
-                data-bs-parent="#activity-accordion"
-              >
-                <div class="accordion-body">
-                  <div class="row activities-block"></div>
-                </div>
-              </div>
-            </div>
+            <activity-box
+              v-for="activity in this.$root.$data.activities"
+              v-bind:key="activity.activity"
+              v-bind:title="activity.activity"
+            ></activity-box>
           </div>
         </div>
       </div>
@@ -87,11 +20,20 @@
 
 <script>
 import ProfileInfo from "../components/ProfileInfo.vue";
+import ActivityBox from "../components/ActivityBox.vue";
 
 export default {
   name: "userProfile",
   components: {
     ProfileInfo,
+    ActivityBox,
+  },
+  created: function () {
+    let activities = [];
+    for (const activity in this.$root.$data.activities) {
+      console.log(activity.activity);
+      activities.push(activity.activity);
+    }
   },
 };
 </script>
@@ -102,5 +44,14 @@ export default {
   border: solid white 4px;
   max-width: 75%;
   margin: 10px;
+}
+#activity-header {
+  margin: 5px;
+}
+.activities-border {
+  background-color: rgb(18, 247, 228);
+  border-radius: 0.25rem;
+  margin-right: 1rem;
+  margin-top: 1rem;
 }
 </style>

@@ -117,7 +117,7 @@
 .nav-item .active,
 li.active {
   background-color: rgb(114, 114, 114);
-  color: rgb(9, 212, 212) !important;
+  color: rgb(0, 189, 189) !important;
 }
 .active router-link:hover {
   color: rgb(6, 250, 169);
