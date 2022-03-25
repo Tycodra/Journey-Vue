@@ -209,6 +209,7 @@ export default {
 }
 .nav-link.active.tab-button {
   background-color: #9bdeeb;
+  color: black !important;
 }
 .nav-tabs {
   margin-top: 1rem;

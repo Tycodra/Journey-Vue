@@ -62,7 +62,20 @@ export default {
 .activities-block {
   background-color: darkgray;
   border-radius: 0.25rem;
-  height: 28rem;
-  overflow-x: scroll;
+  height: 27rem;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: normal;
+}
+.card {
+  margin: 0.25rem;
+}
+.row {
+  /* justify-content: space-evenly; */
+  text-align: center;
+  margin-left: 0;
+  margin-right: 0;
+  /* margin-top: 1rem; */
 }
 </style>

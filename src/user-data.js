@@ -23,6 +23,13 @@ let data = [
         title: "Bear Canyon Suspension Bridge",
         description: "Fun little hike with Amanda and my Dad",
       },
+      {
+        id: 37,
+        activity: "Hiking",
+        image: "rockhounding-walking-around.jpg",
+        title: "Wandering in search of rocks",
+        description: "Here I am in my native element",
+      },
     ],
   },
   {

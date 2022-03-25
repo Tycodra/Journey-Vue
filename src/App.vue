@@ -97,7 +97,7 @@
 }
 
 .navbar {
-  padding: none;
+  padding: 0;
 }
 
 .navbar-dark .navbar-nav .nav-link:focus,
@@ -161,15 +161,44 @@ nav a.router-link-exact-active {
 }
 
 .fixed-bottom {
-  height: 40px;
+  height: 30px;
+  align-content: center;
 }
 .clear {
   clear: both;
-  height: 40px;
+  height: 30px;
 }
 
 .github-link {
   padding: 0;
   margin-left: 0.5rem;
+}
+
+/* Mobile Styles */
+@media only screen and (max-width: 475px) {
+  .nav-item:first-child {
+    margin-top: 0.5rem;
+  }
+  .nav-item {
+    border-radius: 0.25rem;
+    /* border-bottom: rgb(196, 195, 195) solid 1px; */
+  }
+  .nav-item:last-child {
+    margin-bottom: 0.5rem;
+    border-bottom: none;
+  }
+  .nav-tabs {
+    margin-top: 0;
+    border-bottom: none;
+  }
+  .nav-item.tab {
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+    border: none;
+  }
+
+  .tab-content {
+    margin: 0.5rem;
+  }
 }
 </style>

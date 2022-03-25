@@ -69,7 +69,7 @@ export default {
 
 <style scoped>
 .ProfileInfo {
-  margin: 1rem;
+  margin: 0.75rem;
 }
 .col-user-image {
   align-self: center;
@@ -126,5 +126,11 @@ export default {
   font-size: 0.8rem;
   color: cyan;
   padding: 0.25rem 0.5rem;
+}
+
+@media only screen and (max-width: 475px) {
+  .ProfileInfo {
+    width: 92%;
+  }
 }
 </style>

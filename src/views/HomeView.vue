@@ -34,14 +34,22 @@ export default {
 <style scoped>
 .home-page-body {
   background-color: #bfe3eb;
-  height: 89.3vh;
+  height: 91.45vh;
   /* width: 100vw; */
   align-content: center;
   /* margin-bottom: 40px; */
 }
 
+.jumbotron {
+  background-color: #b5d9e1;
+}
+
 #journey-intro {
-  margin-left: 0.5rem;
+  margin: 0.5rem;
+}
+
+.lead {
+  margin: 0.25rem;
 }
 
 .home-page-body,
@@ -49,5 +57,15 @@ export default {
   --bs-gutter-x: 0;
   --bs-gutter-y: 0;
   align-items: center;
+}
+
+@media only screen and (max-width: 475px) {
+  .col {
+    width: 95%;
+    flex: 1 0 55%;
+  }
+  .home-page-body {
+    height: 100%;
+  }
 }
 </style>

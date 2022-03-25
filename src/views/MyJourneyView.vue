@@ -1,8 +1,8 @@
 <template>
   <div class="MyJourney">
     <div class="row">
-      <ProfileInfo class="col-sm-3" />
-      <div class="col">
+      <ProfileInfo class="col-3" />
+      <div class="col activity-col">
         <div class="activities-border">
           <h5 id="activity-header">Hobbies</h5>
           <div class="accordion" id="activity-accordion">
@@ -47,12 +47,21 @@ export default {
   margin: 10px;
 }
 #activity-header {
-  margin: 5px;
+  padding-top: 5px;
 }
 .activities-border {
   background-color: rgb(18, 247, 228);
   border-radius: 0.25rem;
   margin-right: 1rem;
   margin-top: 1rem;
+}
+.activity-col {
+  width: 71%;
+}
+
+@media only screen and (max-width: 475px) {
+  .activities-border {
+    margin: 0.75rem;
+  }
 }
 </style>
