@@ -7,6 +7,7 @@ Vue.config.productionTip = false;
 
 let data = {
   activities: user_data,
+  bucketlist: ["Scuba Diving", "Museums", "Exploring"],
 };
 
 new Vue({

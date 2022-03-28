@@ -24,7 +24,7 @@ import ProfileInfo from "../components/ProfileInfo.vue";
 import ActivityBox from "../components/ActivityBox.vue";
 
 export default {
-  name: "userProfile",
+  name: "userProfileJourney",
   components: {
     ProfileInfo,
     ActivityBox,
