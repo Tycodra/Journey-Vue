@@ -1,42 +1,24 @@
 <template>
-  <div class="accordion-item">
-    <h2 class="accordion-header" id="headingOne">
-      <button
-        class="accordion-button collapsed"
-        type="button"
-        data-bs-toggle="collapse"
-        :data-bs-target="'#' + title"
-        aria-expanded="true"
-        aria-controls="collapseOne"
-      >
-        {{ title }}
-      </button>
-    </h2>
-    <div
-      :id="title"
-      class="accordion-collapse collapse show"
-      aria-labelledby="headingOne"
-    >
-      <div class="accordion-body">
-        <div class="row activities-block">
-          <synthetic-activity-card
-            v-for="activity in activities"
-            :key="activity.id"
-            v-bind:image="activity.src"
-            v-bind:title="title"
-            v-bind:description="activity.description"
-          ></synthetic-activity-card>
-        </div>
-      </div>
+  <div class="explore-box">
+    <h1>{{ title }}</h1>
+    <div class="row activities-block">
+      <synthetic-activity-card
+        v-for="activity in activities"
+        :key="activity.id"
+        v-bind:image="activity.src"
+        v-bind:title="title"
+        v-bind:description="activity.description"
+      ></synthetic-activity-card>
     </div>
   </div>
 </template>
+
 <script>
 import SyntheticActivityCard from "./SyntheticActivityCard.vue";
 let photoAPIKey = "563492ad6f91700001000001ecb71e3106e145c1a1b1be0661c51aed";
 
 export default {
-  name: "activityBox",
+  name: "explore-box",
   props: {
     title: String,
   },
@@ -64,7 +46,7 @@ export default {
         .then((data) => {
           console.log(data.photos);
 
-          for (let i = 0; i < 5; i++) {
+          for (let i = 0; i < 10; i++) {
             let activity = {};
             activity.id = data.photos[i].id;
             activity.src = data.photos[i].src.portrait;
@@ -79,24 +61,10 @@ export default {
 </script>
 
 <style scoped>
-.accordion-item {
-  background-color: rgb(151, 150, 150);
-}
-.accordion-button {
-  padding: 0.25rem 1.25rem;
-  background-color: rgb(207, 206, 206);
-}
-.accordion-button:not(.collapsed) {
-  background-color: #d8f1e9;
-  color: rgb(95, 95, 95);
-}
 .activities-block {
   background-color: darkgray;
   border-radius: 0.25rem;
-  height: 27rem;
   display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
   justify-content: normal;
 }
 .card {
