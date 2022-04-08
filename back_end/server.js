@@ -21,6 +21,7 @@ mongoose.connect(dbURL, {
 // Create a new item in the museum: takes a title and a path to an image.
 app.post("/api/activities", async (req, res) => {
   const activity = new Activity({
+    type: req.body.type,
     title: req.body.title,
     description: req.body.description,
     path: req.body.path,
@@ -34,10 +35,20 @@ app.post("/api/activities", async (req, res) => {
   }
 });
 
-// Get a list of all of the items in the museum.
-app.get("/api/activities", async (req, res) => {
+app.get("/api/activityType", async (req, res) => {
   try {
-    let activities = await Activity.find();
+    let activityTypes = await Activity.distinct("type", {});
+    res.send(activityTypes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+// Get a list of all of the activities.
+app.get("/api/activities/:type", async (req, res) => {
+  try {
+    let activities = await Activity.find({ type: req.params.type });
     res.send(activities);
   } catch (error) {
     console.log(error);
@@ -85,10 +96,10 @@ const upload = multer({
 
 // Create a scheme for activities: a title, description and a path to an image.
 const activitySchema = new mongoose.Schema({
+  type: String,
   title: String,
   description: String,
   path: String,
-  activity: String,
 });
 // Create a model for items in the museum.
 const Activity = mongoose.model("Activity", activitySchema);
@@ -101,6 +112,7 @@ app.post("/api/photos", upload.single("photo"), async (req, res) => {
     return res.sendStatus(400);
   }
   res.send({
-    path: "/images/" + req.file.filename,
+    // path: "/images/" + req.file.filename,
+    path: req.file.filename,
   });
 });

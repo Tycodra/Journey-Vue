@@ -36,6 +36,17 @@
                   </div>
                   <div class="modal-body">
                     <div class="form">
+                      <input v-model="findType" placeholder="Type" />
+                      <div class="suggestions" v-if="activityTypes.length > 0">
+                        <div
+                          class="suggestion"
+                          v-for="activity in activities"
+                          :key="activity"
+                          @click="selectItem(s)"
+                        >
+                          {{ activity }}
+                        </div>
+                      </div>
                       <input v-model="title" placeholder="Title" />
                       <p></p>
                       <textarea
@@ -66,10 +77,9 @@
           </div>
           <div class="accordion" id="activity-accordion">
             <activity-box
-              v-for="activity in activities"
-              v-bind:key="activity.activity"
-              v-bind:title="activity.activity"
-              v-bind:activities="activity.activities"
+              v-for="activity in activityTypes"
+              v-bind:key="activity.data"
+              v-bind:title="activity"
             ></activity-box>
           </div>
         </div>
@@ -88,11 +98,12 @@ export default {
   data() {
     return {
       activities: [],
+      activityTypes: [],
       title: "",
       description: "",
       file: null,
       addActivity: null,
-      findTitle: "",
+      findType: "",
       findActivity: null,
     };
   },
@@ -102,6 +113,14 @@ export default {
   },
   created() {
     this.getActivities();
+  },
+  computed: {
+    suggestions() {
+      let activities = this.activities.filter((activity) =>
+        activity.type.toLowerCase().startsWith(this.findTitle.toLowerCase())
+      );
+      return activities.sort((a, b) => a.title > b.title);
+    },
   },
   methods: {
     fileChanged(event) {
@@ -113,6 +132,7 @@ export default {
         formData.append("photo", this.file, this.file.name);
         let r1 = await axios.post("/api/photos", formData);
         let r2 = await axios.post("/api/activities", {
+          type: this.findType,
           title: this.title,
           description: this.description,
           path: r1.data.path,
@@ -125,12 +145,24 @@ export default {
     },
     async getActivities() {
       try {
-        let response = await axios.get("/api/activities");
-        this.activities = response.data;
+        // let activities = await axios.get("/api/activities");
+        let activityType = await axios.get("/api/activityType");
+        // this.activities = activities.data;
+        this.activityTypes = activityType.data;
         return true;
       } catch (error) {
         console.log(error);
       }
+    },
+    activityByType(type) {
+      let activities = this.activities.filter(
+        (activity) => activity.type === type
+      );
+      return activities;
+    },
+    selectItem(activity) {
+      this.findTitle = "";
+      this.findActivity = activity;
     },
   },
 };

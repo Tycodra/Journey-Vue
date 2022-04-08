@@ -23,7 +23,7 @@
           <activity-card
             v-for="activity in activities"
             :key="activity.id"
-            v-bind:image="activity.image"
+            v-bind:image="activity.path"
             v-bind:title="activity.title"
             v-bind:description="activity.description"
           ></activity-card>
@@ -33,16 +33,35 @@
   </div>
 </template>
 <script>
+import axios from "axios";
 import ActivityCard from "./ActivityCard.vue";
 
 export default {
   name: "activityBox",
+  data() {
+    return {
+      activities: [],
+    };
+  },
   props: {
     title: String,
-    activities: Array,
   },
   components: {
     ActivityCard,
+  },
+  created() {
+    this.getActivities();
+  },
+  methods: {
+    async getActivities() {
+      try {
+        let activities = await axios.get("/api/activities/" + this.title);
+        this.activities = activities.data;
+        return true;
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>
