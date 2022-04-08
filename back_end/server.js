@@ -11,7 +11,7 @@ app.use(
 
 const mongoose = require("mongoose");
 const dbURL =
-  "mongodb+srv://Tycodra:MongoCS260@colonelcluster.surhs.mongodb.net/journey";
+  "mongodb+srv://******:******@colonelcluster.surhs.mongodb.net/journey";
 
 // connect to the database
 mongoose.connect(dbURL, {
