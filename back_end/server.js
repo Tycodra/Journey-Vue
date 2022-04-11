@@ -11,7 +11,7 @@ app.use(
 
 const mongoose = require("mongoose");
 const dbURL =
-  "mongodb+srv://******:******@colonelcluster.surhs.mongodb.net/journey";
+  "mongodb+srv://****:*****@colonelcluster.surhs.mongodb.net/journey";
 
 // connect to the database
 mongoose.connect(dbURL, {
@@ -73,6 +73,7 @@ app.put("/api/activities/:id", async (req, res) => {
     const activity = await Activity.findOne({
       _id: req.params.id,
     });
+    activity.type = req.body.type;
     activity.title = req.body.title;
     activity.description = req.body.description;
     await activity.save();

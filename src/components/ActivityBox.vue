@@ -1,7 +1,6 @@
 <template>
   <div class="accordion-item">
     <h2 class="accordion-header" id="headingOne">
-      <!-- https://medium.com/actualize-network/prototyping-with-vue-js-and-bootstrap-2404efe93d6 -->
       <button
         class="accordion-button collapsed"
         type="button"
@@ -23,9 +22,10 @@
           <activity-card
             v-for="activity in activities"
             :key="activity.id"
-            v-bind:image="activity.path"
-            v-bind:title="activity.title"
-            v-bind:description="activity.description"
+            v-bind:id="activity._id"
+            v-bind:activity="activity"
+            v-on:edit-activity="editActivity"
+            v-on:delete-activity="deleteActivity"
           ></activity-card>
         </div>
       </div>
@@ -34,6 +34,7 @@
 </template>
 <script>
 import axios from "axios";
+import EventBus from "../event-bus";
 import ActivityCard from "./ActivityCard.vue";
 
 export default {
@@ -51,6 +52,7 @@ export default {
   },
   created() {
     this.getActivities();
+    EventBus.$on("refresh", this.refresh);
   },
   methods: {
     async getActivities() {
@@ -60,6 +62,17 @@ export default {
         return true;
       } catch (error) {
         console.log(error);
+      }
+    },
+    refresh() {
+      this.getActivities();
+    },
+    editActivity: function (editActivity) {
+      this.$emit("edit-activity", editActivity);
+    },
+    deleteActivity() {
+      if (this.activities.length == 1) {
+        this.$emit("delete-activity");
       }
     },
   },
