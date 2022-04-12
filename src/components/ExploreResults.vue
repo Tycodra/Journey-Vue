@@ -1,28 +1,33 @@
 <template>
   <div class="explore-results">
     <div class="row">
-      <h1>{{ title }}</h1>
-      <input
-        @submit="search"
-        @input="search"
-        v-model="query"
-        placeholder="Search"
-      />
+      <h1>{{ searchTitle }}</h1>
+      <form
+        v-on:submit.prevent="search"
+        id="explore_form"
+        class="d-flex explore-form"
+      >
+        <input
+          id="explore-input"
+          v-model="query"
+          class="form-control me-2"
+          type="search"
+          placeholder="hiking, drawing, etc."
+          aria-label="Search"
+        />
+      </form>
     </div>
     <div class="row activities-block">
       <activity-card
         v-for="activity in filteredActivities"
         :key="activity.id"
-        v-bind:image="activity.path"
-        v-bind:title="activity.title"
-        v-bind:description="activity.description"
+        v-bind:activity="activity"
       ></activity-card>
     </div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
 // import SyntheticActivityCard from "./SyntheticActivityCard.vue";
 import ActivityCard from "./ActivityCard.vue";
 let photoAPIKey = "563492ad6f91700001000001ecb71e3106e145c1a1b1be0661c51aed";
@@ -31,11 +36,13 @@ export default {
   name: "explore-results",
   props: {
     title: String,
+    activities: [],
   },
   data: function () {
     return {
-      activities: [],
+      searchTitle: "",
       filteredActivities: [],
+      syntheticActivities: [],
       query: "",
     };
   },
@@ -44,28 +51,35 @@ export default {
     // SyntheticActivityCard,
   },
   created() {
-    this.getActivities();
     this.query = this.title;
+    this.searchTitle = this.title;
     this.search();
     // this.fetch();
   },
   methods: {
-    async getActivities() {
-      try {
-        let activities = await axios.get("/api/activities");
-
-        this.activities = activities.data;
-        return true;
-      } catch (error) {
-        console.log(error);
-      }
-    },
     search() {
-      this.filteredActivities = this.activities.filter((activity) =>
-        `${activity.type} ${activity.title} ${activity.description}`.includes(
-          this.query
-        )
-      );
+      this.searchTitle = this.query;
+      let search = String(this.query).toLowerCase();
+      // search.toLowerCase();
+      let filteredActivities = [];
+      this.activities.forEach(function (activity) {
+        let addActivity = false;
+        let type = String(activity.type).toLowerCase();
+        let title = String(activity.title).toLowerCase();
+        let description = String(activity.description).toLowerCase();
+
+        if (type.includes(search)) {
+          addActivity = true;
+        } else if (title.includes(search)) {
+          addActivity = true;
+        } else if (description.includes(search)) {
+          addActivity = true;
+        }
+        if (addActivity == true) {
+          filteredActivities.push(activity);
+        }
+      });
+      this.filteredActivities = filteredActivities;
     },
     fetch: function () {
       fetch(`https://api.pexels.com/v1/search?query=${this.title}`, {
@@ -85,7 +99,7 @@ export default {
             activity.src = data.photos[i].src.portrait;
             activity.description = data.photos[i].alt;
 
-            this.activities.push(activity);
+            this.syntheticActivities.push(activity);
           }
         });
     },

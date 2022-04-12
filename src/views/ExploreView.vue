@@ -1,17 +1,19 @@
 <template>
   <div id="explore-body" class="explore-body container-fluid">
     <explore-search
-      v-show="searched == false"
+      v-if="searched == false"
       @search-query="search"
     ></explore-search>
     <explore-results
       v-if="searched == true"
       v-bind:title="query"
+      v-bind:activities="activities"
     ></explore-results>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 import ExploreResults from "../components/ExploreResults.vue";
 import ExploreSearch from "../components/ExploreSearch.vue";
 
@@ -21,16 +23,30 @@ export default {
     return {
       searched: false,
       query: "",
+      activities: [],
     };
   },
   components: {
     ExploreSearch,
     ExploreResults,
   },
+  created() {
+    this.getActivities();
+  },
   methods: {
     search(query) {
       this.query = query;
       this.searched = true;
+    },
+    async getActivities() {
+      try {
+        let activities = await axios.get("/api/activities");
+
+        this.activities = activities.data;
+        console.log(activities.data);
+      } catch (error) {
+        console.log(error);
+      }
     },
   },
 };

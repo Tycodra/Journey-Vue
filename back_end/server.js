@@ -11,7 +11,7 @@ app.use(
 
 const mongoose = require("mongoose");
 const dbURL =
-  "mongodb+srv://******:******CS260@colonelcluster.surhs.mongodb.net/journey";
+  "mongodb+srv://Tycodra:MongoCS260@colonelcluster.surhs.mongodb.net/journey";
 
 // connect to the database
 mongoose.connect(dbURL, {
@@ -112,6 +112,7 @@ const activitySchema = new mongoose.Schema({
   description: String,
   path: String,
 });
+activitySchema.index({ type: "text" });
 // Create a model for items in the museum.
 const Activity = mongoose.model("Activity", activitySchema);
 
