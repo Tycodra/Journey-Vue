@@ -1,39 +1,19 @@
 <template>
   <div id="explore-body" class="explore-body container-fluid">
-    <div id="explore-box" v-bind:class="{ hide: searched }" class="row">
-      <div id="explore_jumbo" class="jumbotron jumbotron-fluid explore-box">
-        <div class="container">
-          <h1 id="explore-body-header" class="display-4">
-            Whats the world up to?
-          </h1>
-          <p id="explore-body-text" class="lead">
-            Explore the hobbies and activities of other people from around the
-            world!
-          </p>
-        </div>
-        <form
-          v-on:submit.prevent="search"
-          id="explore_form"
-          class="d-flex explore-form"
-        >
-          <input
-            id="explore-input"
-            v-model="query"
-            class="form-control me-2"
-            type="search"
-            placeholder="hiking, drawing, etc."
-            aria-label="Search"
-          />
-          <button id="explore-btn" class="btn" type="submit">Explore</button>
-        </form>
-      </div>
-    </div>
-    <explore-box v-if="searched == true" v-bind:title="query"></explore-box>
+    <explore-search
+      v-show="searched == false"
+      @search-query="search"
+    ></explore-search>
+    <explore-results
+      v-if="searched == true"
+      v-bind:title="query"
+    ></explore-results>
   </div>
 </template>
 
 <script>
-import ExploreBox from "../components/ExploreBox.vue";
+import ExploreResults from "../components/ExploreResults.vue";
+import ExploreSearch from "../components/ExploreSearch.vue";
 
 export default {
   name: "exploreView",
@@ -44,10 +24,12 @@ export default {
     };
   },
   components: {
-    ExploreBox,
+    ExploreSearch,
+    ExploreResults,
   },
   methods: {
-    search: function () {
+    search(query) {
+      this.query = query;
       this.searched = true;
     },
   },
@@ -56,6 +38,8 @@ export default {
 
 <style scoped>
 .explore-body {
+  height: 100%;
+  min-height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,13 +47,6 @@ export default {
   background-color: #ccf0f0;
 }
 
-.explore-box {
-  text-align: center;
-  padding: 1rem;
-  border: solid 3px rgb(114, 114, 114);
-  border-radius: 0.25rem;
-  background-color: rgb(196, 195, 195);
-}
 .hide {
   display: none;
 }

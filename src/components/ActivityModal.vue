@@ -2,7 +2,9 @@
   <div class="modal-backdrop">
     <div class="modal">
       <header class="modal-header">
-        <slot name="header"> {{ modalType }} </slot>
+        <slot name="header"
+          ><strong> {{ modalType }} </strong>
+        </slot>
         <button type="button" class="btn-close" @click="close">x</button>
       </header>
 
@@ -10,7 +12,12 @@
         <slot name="body">
           <div class="form row">
             <div class="col">
-              <input v-model="activityType" placeholder="Type" />
+              <h6>Activity Type</h6>
+              <input
+                class="activityType"
+                v-model="activityType"
+                placeholder="Type"
+              />
               <div class="suggestions" v-if="activityTypes.length > 0">
                 <div
                   class="suggestion"
@@ -23,19 +30,20 @@
               </div>
             </div>
             <div class="col">
+              <h6>Title</h6>
               <input
                 class="activityTitle"
                 v-model="activityTitle"
                 placeholder="Title"
               />
-              <p></p>
+              <h6>Description</h6>
               <textarea
                 class="activityDescription"
                 v-model="activityDescription"
                 placeholder="Description"
               />
             </div>
-            <div v-show="isEditActivity == false">
+            <div v-if="isEditActivity == false">
               <p></p>
               <input
                 class="upload-photo"
@@ -156,6 +164,10 @@ export default {
 };
 </script>
 <style scoped>
+.col {
+  align-items: flex-start;
+  padding: 0 1rem;
+}
 .suggestions {
   display: flex;
   flex-direction: column;
@@ -165,17 +177,23 @@ export default {
   border: 1px solid gray;
 }
 
+h6 {
+  margin: 0.5rem !important;
+}
+.activityType {
+  width: inherit;
+}
 .activityTitle {
   width: inherit;
 }
 .activityDescription {
   width: inherit;
   height: 8rem;
-  margin-top: 1rem;
 }
-/* .upload-photo {
-  margin-bottom: 1rem;
-} */
+.upload-photo {
+  float: left;
+  margin: 1rem;
+}
 .modal-backdrop {
   position: fixed;
   top: 0;
@@ -191,7 +209,9 @@ export default {
 .modal {
   position: fixed;
   width: 50%;
+  max-width: 600px;
   height: 60%;
+  max-height: 430px;
   top: 20%;
   left: 25%;
   background: #ffffff;
@@ -209,14 +229,12 @@ export default {
 .modal-header {
   position: relative;
   border-bottom: 1px solid #eeeeee;
-  color: #4aae9b;
+  color: rgb(34 164 164);
   justify-content: space-between;
 }
 
 .modal-footer {
   border-top: 1px solid #eeeeee;
-  /* flex-direction: column;
-  justify-content: flex-end; */
 }
 
 .modal-body {
@@ -233,14 +251,33 @@ export default {
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
-  color: #4aae9b;
+  color: #318d7c;
   background: transparent;
 }
 
 .btn-green {
   color: white;
-  background: #4aae9b;
-  border: 1px solid #4aae9b;
+  font-weight: 600;
+  background: #3dab97;
+  border: 2px solid #46c0aa;
   border-radius: 2px;
+}
+
+@media only screen and (max-width: 475px) {
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  .modal {
+    position: fixed;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    background: #ffffff;
+    box-shadow: 2px 2px 20px 1px;
+    display: flex;
+    flex-direction: column;
+  }
 }
 </style>

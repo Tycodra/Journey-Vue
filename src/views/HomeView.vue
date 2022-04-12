@@ -34,7 +34,7 @@ export default {
 <style scoped>
 .home-page-body {
   background-color: #bfe3eb;
-  height: 91.45vh;
+  height: 92.5vh;
   /* width: 100vw; */
   align-content: center;
   /* margin-bottom: 40px; */

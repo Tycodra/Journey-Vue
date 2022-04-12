@@ -11,7 +11,7 @@ app.use(
 
 const mongoose = require("mongoose");
 const dbURL =
-  "mongodb+srv://****:*****@colonelcluster.surhs.mongodb.net/journey";
+  "mongodb+srv://******:******CS260@colonelcluster.surhs.mongodb.net/journey";
 
 // connect to the database
 mongoose.connect(dbURL, {
@@ -39,6 +39,16 @@ app.get("/api/activityType", async (req, res) => {
   try {
     let activityTypes = await Activity.distinct("type", {});
     res.send(activityTypes);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+});
+
+app.get("/api/activities", async (req, res) => {
+  try {
+    let activities = await Activity.find();
+    res.send(activities);
   } catch (error) {
     console.log(error);
     res.sendStatus(500);

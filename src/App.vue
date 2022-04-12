@@ -165,6 +165,10 @@ nav a.router-link-exact-active {
   align-content: center;
 }
 .clear {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   clear: both;
   height: 30px;
 }

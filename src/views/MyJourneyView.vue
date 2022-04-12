@@ -106,7 +106,7 @@ export default {
   padding-top: 5px;
 }
 .activities-border {
-  background-color: rgb(18, 247, 228);
+  background-color: rgb(24, 255, 236);
   border-radius: 0.25rem;
   margin-right: 1rem;
   margin-top: 1rem;
@@ -114,25 +114,11 @@ export default {
 .activity-col {
   width: 71%;
 }
-
-.suggestions {
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-  margin-top: 1rem;
-  height: 8rem;
-}
-
-.activityTitle {
-  width: inherit;
-}
-.activityDescription {
-  width: inherit;
-  height: 8rem;
-  margin-top: 1rem;
-}
-.upload-photo {
-  margin-bottom: 1rem;
+.btn {
+  background-color: rgb(16, 228, 210);
+  border-block-end: 4px solid rgb(38, 246, 229);
+  color: white;
+  font-weight: 600;
 }
 @media only screen and (max-width: 475px) {
   .activities-border {

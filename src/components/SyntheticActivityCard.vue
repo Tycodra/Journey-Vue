@@ -1,6 +1,6 @@
 <template>
   <div class="card activity-card">
-    <img :src="image" class="card-img-top img-fluid" />
+    <img :src="/images/ + image" class="card-img-top img-fluid" />
     <div class="card-body d-flex flex-column">
       <h5 class="card-title">{{ title }}</h5>
       <p class="card-text">{{ description }}</p>
@@ -38,5 +38,14 @@ export default {
 }
 .card-text {
   font-size: 0.75rem;
+}
+@media only screen and (max-width: 475px) {
+  .activity-card {
+    display: flex;
+    width: 90%;
+    height: auto;
+    flex: 0 0 auto;
+    /* margin: 0.75rem; */
+  }
 }
 </style>

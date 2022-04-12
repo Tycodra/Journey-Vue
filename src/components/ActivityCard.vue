@@ -54,8 +54,9 @@ export default {
 </script>
 <style scoped>
 .activity-card {
-  width: 13rem;
+  width: 14rem;
   height: auto;
+  min-height: auto;
   flex: 0 0 auto;
   /* margin: 0.75rem; */
 }
@@ -96,6 +97,9 @@ export default {
   align-self: center;
   max-width: 95%;
   /* margin-top: 0.75rem; */
+}
+.card-title {
+  margin: 0.25rem;
 }
 .card-body {
   padding: 0.5rem 0.5rem !important;

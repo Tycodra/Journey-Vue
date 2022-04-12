@@ -73,6 +73,8 @@ export default {
     deleteActivity() {
       if (this.activities.length == 1) {
         this.$emit("delete-activity");
+      } else {
+        this.getActivities();
       }
     },
   },
@@ -94,7 +96,7 @@ export default {
 .activities-block {
   background-color: darkgray;
   border-radius: 0.25rem;
-  height: 27rem;
+  height: fit-content;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
