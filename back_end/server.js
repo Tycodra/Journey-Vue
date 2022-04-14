@@ -99,7 +99,7 @@ app.listen(3001, () => console.log("Server listening on port 3001!"));
 // Configure multer so that it will upload to '../front-end/public/images'
 const multer = require("multer");
 const upload = multer({
-  dest: "../public/images/",
+  dest: "/var/www/Journey2/images/",
   limits: {
     fileSize: 10000000,
   },

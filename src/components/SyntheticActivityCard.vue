@@ -1,6 +1,6 @@
 <template>
   <div class="card activity-card">
-    <img :src="/images/ + image" class="card-img-top img-fluid" />
+    <img :src="image" class="card-img-top img-fluid" />
     <div class="card-body d-flex flex-column">
       <h5 class="card-title">{{ title }}</h5>
       <p class="card-text">{{ description }}</p>
